@@ -1,4 +1,10 @@
 # Amazon Web Service Automated Quality Inspection
+![Architecture](docs/aws_highlevelarchitektur_overview.png)
+
+This repository is a showcase about how to leverage Amazon Web Services (aws) to train and deploy a machine learning project without any deep knowledge about machine learning frameworks. 
+ The underlying use case is automated detection of defect components in manufacturing. For this purpose we upload pictures of the components to aws. Then, we classify the image using a machine learning model. Images that are not classified with sufficient certainty by the model can be manually postprocessed using a simple user interface.
+
+We utilizing different services such as [S3](https://aws.amazon.com/s3/), [Rekognition](https://aws.amazon.com/rekognition/), [Lambda Functions](https://aws.amazon.com/lambda/), [Simple Queue Service](https://aws.amazon.com/sqs/) and [Elastic Beanstalk](https://aws.amazon.com/elasticbeanstalk/) to implement the machine learning system. The Rekognition image classification model is trained on the [product image data for quality insepection](https://www.kaggle.com/ravirajsinh45/real-life-industrial-dataset-of-casting-product).
 
 ## Amazon Rekognition
 
@@ -64,6 +70,8 @@ response = client.detect_custom_labels(
   ```
 
 ## Lambda Integration
+
+![Lambda_functions_highlevel](docs/aws_highlevelarchitektur_lambdafunctions.png)
 
 
 ## Elastic Beanstalk
