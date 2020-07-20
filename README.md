@@ -63,7 +63,7 @@ response = client.detect_custom_labels(
 )
   ```
 
-  ## Lambda Integration
+## Lambda Integration
 
 
 ## Elastic Beanstalk

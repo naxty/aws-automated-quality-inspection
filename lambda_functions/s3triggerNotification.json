@@ -1,0 +1,9 @@
+{
+"LambdaFunctionConfigurations": [
+    {
+      "Id": "s3eventtriggerslambda",
+      "LambdaFunctionArn": "<<my-predict-function-arn>>",
+      "Events": ["s3:ObjectCreated:*"]
+    }
+  ]
+}

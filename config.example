@@ -1,0 +1,11 @@
+ACCOUNT_ID="<<my-account-id>>"
+
+INBOUND_BUCKET="<<my_prediction_bucket>>"
+PREDICTION_BUCKET="<<my_prediction_bucket>"
+
+PREDICTION_QUEUE="<<my_prediction_queue>>"
+PREDICTION_THRESHOLD="0.8"
+MODEL_ARN="<<my-rekognition-mode-arn"
+
+PREDICT_LAMBDA_NAME="predict_picture"
+MOVE_LAMBDA_NAME="move_picture"
