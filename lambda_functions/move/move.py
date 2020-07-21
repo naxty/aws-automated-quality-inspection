@@ -31,6 +31,9 @@ def lambda_handler(event, context):
         f"copied {image_name} from {source_bucket} in bucket {target_bucket} with key {target_key}"
     )
 
+    s3.Object(source_bucket, image_name).delete()
+    print(f"deleted {image_name} from {source_bucket}")
+
 
 def get_target_key(image_name, prediction_label, prediction_score):
     target_key = prediction_label + "/" + image_name

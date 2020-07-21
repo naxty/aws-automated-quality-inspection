@@ -28,7 +28,7 @@ def lambda_handler(event, context):
         "bucket_name": source_bucket,
         "image_name": source_key,
         "prediction_label": label,
-        "prediction_score": score,
+        "prediction_score": score/100, #normalize score between 0 and 1
     }
     print("Message: ", msg)
 
