@@ -216,34 +216,19 @@ Here, we use the `SQS_QUEUE_URL` from above.
 
 ## Elastic Beanstalk
 
-### Get right permissions
+![Elastic Beanstalk Architecture](docs/aws_highlevelarchitektur_frontend.png)
+
+We serve an web application that can be used for reviewing images in the `unclear` folder, i.e., that have been classified by the model with a score below the chosen threshold. 
+
+The server is written in Python using the [fastapi](https://fastapi.tiangolo.com/) framework. Through the server we serve a static page that is using React to display an image and as an user we can decide if the image is `defect` or `ok`. On the server side we retrieve the image from the `PREDICTION_BUCKET` and generate a pre-signed url that can be loaded directly from React. The server is deployed with Elastic Beanstalk. 
+
+##### Preliminaries
+
+In order to deploy the application with Elastic Beanstalk, we require the [EB CLI](https://docs.aws.amazon.com/elasticbeanstalk/latest/dg/eb-cli3-install.html).
+
 [] TODO get permission Screenshot
 
 eb init -p python-3.7 product-quality-api --region eu-west-1
-
-1. Create policy to access the s3 bucket and assign it the beanstalk service role:
-```
-{
-    "Version": "2012-10-17",
-    "Statement": [
-        {
-            "Effect": "Allow",
-            "Action": [
-                "s3:GetBucketLocation",
-                "s3:ListAllMyBuckets"
-            ],
-            "Resource": "arn:aws:s3:::*"
-        },
-        {
-            "Effect": "Allow",
-            "Action": "s3:*",
-            "Resource": [
-                "arn:aws:s3:::product-quality-inbound"
-            ]
-        }
-    ]
-}
-```
 
 eb create product-quality-api --profile product_quality
 
