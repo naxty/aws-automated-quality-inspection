@@ -176,7 +176,10 @@ aws s3api put-bucket-notification-configuration \
 using [s3triggerNotification.json](lambda_functions/s3triggerNotification.json) with the correct arn for the lambda function.
 
 #### Moving
-The [move](lambda_functions/move/move.py) function triggers for new events on the SQS queue `PREDICTION_QUEUE`. The function moves the picture into the respective subfolder in the prediction bucket and deletes it from the inbound bucket. Here, we explicitly check if the prediction score is above a given threshold. We move images with low score into a special folder for manual postprocessing because we only trust predictions with a high score for automated processing. The resulting folder structure looks as follows.   
+
+![Lambda_functions_moving](docs/aws_lambda_functions_moving.png)
+
+The [moving](lambda_functions/move/move.py) function triggers for new events on the SQS queue `PREDICTION_QUEUE`. The function moves the picture into the respective subfolder in the prediction bucket and deletes it from the inbound bucket. Here, we explicitly check if the prediction score is above a given threshold. We move images with low score into a special folder for manual postprocessing because we only trust predictions with a high score for automated processing. The resulting folder structure looks as follows.   
 ```
 prediction_bucket
 ├── ok
