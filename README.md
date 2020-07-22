@@ -34,8 +34,6 @@ Downsides:
 - Not possible to select time of training. Explain costs here
 TODO: is there a notification after the training has finished?
 
-Trainings results are impressive
-
 ## Run Rekognition Server
 Cost model
 1. Prerequisites:
