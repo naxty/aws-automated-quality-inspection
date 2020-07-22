@@ -38,7 +38,8 @@ class Decision extends React.Component {
   render() {
     //return e('button', { on })
     return React.createElement("button", {
-      onClick: () => this.makeDecision()
+      onClick: () => this.makeDecision(),
+      disabled: this.props.disabled
     }, this.props.text);
   }
 }
@@ -46,11 +47,11 @@ class Decision extends React.Component {
 class MainApp extends React.Component {
   constructor(props) {
     super(props);
-    this.state = { hasImage: false, url: null, id: null };
+    this.state = { hasImage: false, url: null, id: null, loading: false };
   }
-
   loadImage() {
     console.log("loading image")
+    this.setState({...this.state, loading: true})
     fetch('./need_decision')
       .then(response => {
         return response.json()
@@ -61,14 +62,16 @@ class MainApp extends React.Component {
             {
               url: data.url,
               id: data.id,
-              hasImage: true
+              hasImage: true,
+              loading: false
             })
         } else {
           this.setState(
             {
               url: null,
               id: null,
-              hasImage: false
+              hasImage: false,
+              loading: false
             })
         }
       });
@@ -92,12 +95,14 @@ class MainApp extends React.Component {
       React.createElement("div", null,
         React.createElement(Decision, {
           decision: "ok",
+          disabled: this.state.loading,
           text: "Ok",
           id: this.state.id,
           reload: () => this.loadImage()
         }),
         React.createElement(Decision, {
           decision: "defect",
+          disabled: this.state.loading,
           text: "Defect",
           id: this.state.id,
           reload: () => this.loadImage()
