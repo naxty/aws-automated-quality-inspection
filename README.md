@@ -226,13 +226,25 @@ The server is written in Python using the [fastapi](https://fastapi.tiangolo.com
 
 In order to deploy the application with Elastic Beanstalk, we require the [EB CLI](https://docs.aws.amazon.com/elasticbeanstalk/latest/dg/eb-cli3-install.html).
 
-[] TODO get permission Screenshot
+## Deployment on Elastic Beanstalk
 
-eb init -p python-3.7 product-quality-api --region eu-west-1
 
-eb create product-quality-api --profile product_quality
-
-eb deploy
-
+First, change into the [ebs_app folder](ebs_app/) ane initialize the app deployment with
+```
+eb init product-quality-api --platform python-3.7  --region eu-west-1  
+```
+Among other things, this will create the folder `.elasticbeanstalk` containing a `config.yml` file. Then, we create the environment for our application using
+```
+eb create product-quality-api-env     
+```
+This will take a while to complete. Finally, we can deploy the application into the environment with
+```
+eb deploy product-quality-api-env  
+```
+As soon as the deplyoment is complete, we can open the app in the browser via
+```
+eb open
+```
+The application shows images contained in the `unclear` folder in the `PREDICTION_BUCKET` and asks for a manual classification. In order to test the application you can simply upload some pictures into the folder. 
 
 
