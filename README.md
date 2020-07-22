@@ -255,13 +255,14 @@ eb init product-quality-api --platform python-3.7  --region eu-west-1
 ```
 Among other things, this will create the folder `.elasticbeanstalk` containing a `config.yml` file. Then, we create the environment for our application using
 ```
-eb create product-quality-api-env     
+eb create product-quality-api-env --single
 ```
+The `--single` flag creates the environment with a single EC2 instance and without load balancer. Hence, this environment should only be used for testing.
 This will take a while to complete. Finally, we can deploy the application into the environment with
 ```
 eb deploy product-quality-api-env  
 ```
-As soon as the deplyoment is complete, we can open the app in the browser via
+As soon as the deployment is complete, we can open the app in the browser via
 ```
 eb open
 ```
