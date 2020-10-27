@@ -9,4 +9,4 @@ boto3==1.14.22
 websockets==8.1
 google-cloud-storage==1.29.0
 aiofiles==0.5.0
-cryptography==2.7
+cryptography==3.2
